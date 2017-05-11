@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="pragram" content="no-cache">
+<title>富聪社</title>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../css/common.css" />
+<script type="text/javascript">
+window.NRUM = window.NRUM || {};
+window.NRUM.config = {key:'14a7f0debc494ce9e38b95d7c6480e59',clientStart: +new Date()};
+(function() {var n = document.getElementsByTagName('script')[0],s = document.createElement('script');s.type = 'text/javascript';s.async = true;s.src = '//nos.netease.com/apmsdk/napm-web-min-1.1.3.js';n.parentNode.insertBefore(s, n);})();
+</script>
+<script src="../util/DMP.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="../publicjs/public.js"></script>
+<script src="../js/view.js"></script>
+</head>
+
+<body class="home-page">
+	<div class="welcome-page">
+        <section class="section-welcome" id="p1">
+            <div class="section-inner">
+                <a href="index.html">跳过</a>
+                <h5>安全更强</h5>
+                <h6>保证保险 保驾护航</h6>
+                <div class="section-welcome-img"><img src="../images/welcome_img1~.jpg" /></div>
+            </div>
+        </section>
+        
+        <section class="section-welcome" id="p2">
+            <div class="section-inner">
+                <a href="index.html">跳过</a>
+                <h5>门槛更低</h5>
+                <h6>一元起投 随存随取<br />本钱少也稳盈</h6>
+                <div class="section-welcome-img"><img src="../images/welcome_img2~.jpg" /></div>
+            </div>
+        </section>
+        
+        <section class="section-welcome" id="p3">
+            <div class="section-inner">
+                <a href="index.html">跳过</a>
+                <h5>咨讯更快</h5>
+                <h6>财经动态 尽在指尖<br />债市股市 胜人一筹</h6>
+                <div class="section-welcome-img"><img src="../images/welcome_img3~.jpg" /></div>
+            </div>
+        </section>
+        
+        <section class="section-welcome" id="p4">
+            <div class="section-inner">
+                <a href="index.html">跳过</a>
+                <h5>产品更优</h5>
+                <h6>期限灵活 随存随取<br />收益更高 独领风骚</h6>
+                <div class="section-welcome-img"><img src="../images/welcome_img4~.jpg" /></div>
+            </div>
+        </section>
+        
+        <section class="section-welcome" id="p5">
+            <div class="section-inner">
+                <h5>富聪社<span>“您随身的理财顾问”</span></h5>
+                <h6>网易旗下一站式在线投融资平台</h6>
+                <div class="section-welcome-img"><img src="../images/welcome_img5~.jpg" /></div>
+                <div class="home-btn"><a class="btn" href="index.html">立即体验</a></div>
+            </div>
+        </section>
+	</div>
+    <div class="welcome-flow">
+    	<i class="on"></i><i></i><i></i><i></i><i></i>
+    </div>
+<script>
+$(function(){
+	addUrl("../css/home.css","css");
+	
+	var startX;
+	var touchStart = function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		startX = (e.touches ? e.touches[0] : e).pageX;
+	};
+	var touchMove = function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+	};
+	var touchEnd = function (e) {
+		var endX = (e.changedTouches ? e.changedTouches[0] : e).pageX;
+		var thisIndex = $(this).index();
+		if (startX - endX > 60) { //左滑
+			if($(this).attr("id") == "p5"){ //滑到最后一页
+				return;
+			} else {
+				if($(this).attr("id") == "p4"){
+					$(".welcome-flow").hide();
+				}
+				$(this).addClass("slide-c2l").removeClass("slide-r2c slide-l2c");
+				$(this).next("section").removeClass("slide-c2r").addClass("slide-r2c");
+				$(".welcome-flow").find("i:eq("+ (thisIndex+1) +")").addClass("on").siblings("i").removeClass("on");
+			}
+		} else if (endX - startX > 60) { //右滑
+			if($(this).attr("id") == "p1"){ //滑到第一页
+				return;
+			} else {
+				$(this).addClass("slide-c2r").removeClass("slide-r2c slide-l2c");
+				$(this).prev("section").removeClass("slide-c2l").addClass("slide-l2c");
+				$(".welcome-flow").find("i:eq("+ (thisIndex-1) +")").addClass("on").siblings("i").removeClass("on");
+			}
+		}
+	};
+	for(var i =1; i<=5; i++){
+		document.getElementById("p"+i).addEventListener(events.start, touchStart, false);
+		document.getElementById("p"+i).addEventListener(events.move, touchMove, false);
+		document.getElementById("p"+i).addEventListener(events.end, touchEnd, false);
+	}
+});
+
+</script>
+</body>
+</html>
